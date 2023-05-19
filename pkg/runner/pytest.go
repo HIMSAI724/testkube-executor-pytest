@@ -68,8 +68,8 @@ func (r *PytestRunner) Run(execution testkube.Execution) (result testkube.Execut
     	var args []string
 
     	if r.dependency == "pip" {
-    		runner = "pip"
-    		args = []string{"pytest"}
+    		runner = "pytest"
+    		args = []string{""}
     	}
 
 	// use `execution.Variables` for variables passed from Test/Execution
@@ -79,7 +79,7 @@ func (r *PytestRunner) Run(execution testkube.Execution) (result testkube.Execut
 
 	output.PrintEvent("Running", runPath, "pytest", args)
 
-	out, runErr := executor.Run(runPath, runner, args...)
+	out, runErr := executor.Run(runPath, runner, envManager, args...)
 
 	out = envManager.ObfuscateSecrets(out)
 

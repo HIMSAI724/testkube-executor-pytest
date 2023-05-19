@@ -1,4 +1,5 @@
-NAME ?= testkube-executor-template
+ACCOUNT ?= HIMSAI724
+NAME ?= testkube-executor-pytest
 BIN_DIR ?= $(HOME)/bin
 
 build:
@@ -13,7 +14,7 @@ mongo-dev:
 	docker run -p 27017:27017 mongo
 
 docker-build: 
-	docker build -t kubeshop/$(NAME) -f build/agent/Dockerfile .
+	docker build -t $(ACCOUNT)/$(NAME) -f build/agent/Dockerfile .
 
 install-swagger-codegen-mac: 
 	brew install swagger-codegen
