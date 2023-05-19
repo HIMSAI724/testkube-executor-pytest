@@ -79,7 +79,7 @@ func (r *PytestRunner) Run(execution testkube.Execution) (result testkube.Execut
 
 	output.PrintEvent("Running", runPath, "pytest", args)
 
-	out, runErr := executor.Run(runPath, runner, envManager, args...)
+	out, runErr := executor.Run(runPath, runner, args...)
 
 	out = envManager.ObfuscateSecrets(out)
 
