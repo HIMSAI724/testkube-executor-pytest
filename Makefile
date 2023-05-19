@@ -1,6 +1,7 @@
 ACCOUNT ?= HIMSAI724
 NAME ?= testkube-executor-pytest
 BIN_DIR ?= $(HOME)/bin
+DEPLOY_TAG ?= 1.0.0
 
 build:
 	go build -o $(BIN_DIR)/$(NAME) cmd/agent/main.go 
@@ -14,7 +15,10 @@ mongo-dev:
 	docker run -p 27017:27017 mongo
 
 docker-build: 
-	docker build -t $(ACCOUNT)/$(NAME) -f build/agent/Dockerfile .
+	docker build -t $(ACCOUNT)/$(NAME):$(DEPLOY_TAG) -f build/agent/Dockerfile .
+
+docker-push:
+    docker push $(ACCOUNT)/$(NAME):$(DEPLOY_TAG)
 
 install-swagger-codegen-mac: 
 	brew install swagger-codegen

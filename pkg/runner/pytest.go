@@ -78,6 +78,7 @@ func (r *PytestRunner) Run(execution testkube.Execution) (result testkube.Execut
 	env.NewManager().GetReferenceVars(envManager.Variables)
 
 	output.PrintEvent("Running", runPath, "pytest", args)
+	output.PrintEvent("-------------------------------------")
 
 	out, runErr := executor.Run(runPath, runner, envManager, args...)
 
