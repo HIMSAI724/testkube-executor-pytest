@@ -1,4 +1,4 @@
-module github.com/kubeshop/testkube-executor-template
+module github.com/HIMSAI724/testkube-executor-pytest
 
 go 1.18
 

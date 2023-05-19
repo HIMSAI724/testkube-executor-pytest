@@ -1,7 +1,6 @@
 package runner
 
 import (
-	"errors"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -17,7 +16,7 @@ import (
 	"github.com/kubeshop/testkube/pkg/ui"
 )
 
-func NewPytestRunner(dependency string) (*PytestRunner error) {
+func NewPytestRunner(dependency string) (*PytestRunner, error) {
     output.PrintLog(fmt.Sprintf("%s Preparing test runner", ui.IconTruck))
     params, err := envs.LoadTestkubeVariables()
     if err != nil {
@@ -37,7 +36,6 @@ func NewPytestRunner(dependency string) (*PytestRunner error) {
 		),
 		dependency: dependency,
 	}, nil
-	}
 }
 
 // PytestRunner
@@ -104,41 +102,6 @@ func (r *PytestRunner) Run(execution testkube.Execution) (result testkube.Execut
         output.PrintLog(fmt.Sprintf("%s Test run successful", ui.IconCheckMark))
     }
     return result, runErr
-
-// 	path, err := r.Fetcher.Fetch(execution.Content)
-// 	if err != nil {
-// 		return result, err
-// 	}
-//
-// 	output.PrintEvent("created content path", path)
-
-// 	fileInfo, err := os.Stat(path)
-// 	if err != nil {
-// 		return result, err
-// 	}
-//
-// 	if !fileInfo.IsDir() {
-// 		output.PrintEvent("using file", execution)
-// 		// TODO implement file based test content for string, git-file, file-uri, git
-// 		//      or remove if not used
-// 	}
-
-// 	if fileInfo.IsDir() {
-// 		output.PrintEvent("using dir", execution)
-// 		// TODO implement file based test content for git-dir, git
-// 		//      or remove if not used
-// 	}
-
-	// TODO run executor here
-
-	// error result should be returned if something is not ok
-	// return result.Err(fmt.Errorf("some test execution related error occured"))
-
-	// TODO return ExecutionResult
-// 	return testkube.ExecutionResult{
-// 		Status: testkube.ExecutionStatusPassed,
-// 		Output: "exmaple test output",
-// 	}, nil
 }
 
 // GetType returns runner type
