@@ -1,7 +1,7 @@
 ACCOUNT ?= HIMSAI724
 NAME ?= testkube-executor-pytest
 BIN_DIR ?= $(HOME)/bin
-DEPLOY_TAG ?= 1.0.0
+DEPLOY_TAG ?= 1.0.2
 
 build:
 	go build -o $(BIN_DIR)/$(NAME) cmd/agent/main.go 
